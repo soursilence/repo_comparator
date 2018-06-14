@@ -20,6 +20,7 @@ class RepoHelper {
     public static function callApi($url, \App\Entity\Repo $repo) {
 
         $client = new \GuzzleHttp\Client();
+        $url = self::translateUrl($url);
         $res = $client->request('GET', $url, array('exceptions' => false));
 
         if ($res->getStatusCode() == 200) {
@@ -49,6 +50,16 @@ class RepoHelper {
         } else {
             return $pulls;
         }
+    }
+    
+    /**
+     * 
+     * @param strng $url
+     * @return strng
+     */
+    public static function translateUrl($url){
+        
+        return str_replace('https://github.com/', 'https://api.github.com/repos/', $url);
     }
 
 }
