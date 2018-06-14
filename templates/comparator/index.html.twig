@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Git repository comparator{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Forks</th>
+      <th scope="col">Stars</th>
+      <th scope="col">Watchers</th>
+      <th scope="col">Lastest realese</th>
+      <th scope="col">Open pull requests</th>
+      <th scope="col">Closed pull requests</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if repo1.name %}
+    <tr>
+      <td>{{ repo1.name }}</td>
+      <td>{{ repo1.forks }}</td>
+      <td>{{ repo1.stars }}</td>
+      <td>{{ repo1.watchers }}</td>
+      <td>{{ repo1.lastRelease|date('Y-m-d H:i:s') }}</td>
+      <td>{{ repo1.pullsOpen }}</td>
+      <td>{{ repo1.pullsClosed }}</td>
+    </tr>
+    {% endif %}
+    {% if repo2.name %}
+    <tr>
+      <td>{{ repo2.name }}</td>
+      <td>{{ repo2.forks }}</td>
+      <td>{{ repo2.stars }}</td>
+      <td>{{ repo2.watchers }}</td>
+      <td>{{ repo2.lastRelease|date('Y-m-d H:i:s')  }}</td>
+      <td>{{ repo2.pullsOpen }}</td>
+      <td>{{ repo2.pullsClosed }}</td>
+    </tr>
+    {% endif %}
+      </tbody>
+</table>
+</div>
+{% endblock %}
